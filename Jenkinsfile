@@ -1,0 +1,63 @@
+pipeline {
+    agent any
+    stages {
+        stage('SCM') {
+
+            steps {
+
+                       git "https://github.com/saurabhsonje/sonar1.git"
+                //
+
+            }
+
+        }
+
+        stage('Test') {
+
+            steps {
+
+                sh "mvn test"
+
+                //
+
+            }
+
+        }
+
+        stage('Deploy1') {
+
+            steps {
+
+                  sh "/sonar-scanner/sonar-scanner/bin/sonar-runner"
+
+            }
+
+        }
+
+                  stage('Deploy2') {
+
+            steps {
+
+                  sh "mvn clean deploy"
+            }
+
+        }
+                      stage('Deploy3') {
+
+            steps {
+                       echo "this is step1"
+
+             
+            }
+
+        }
+
+    }
+
+}
+
+
+
+
+
+
